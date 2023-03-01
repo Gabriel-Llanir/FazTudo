@@ -5,7 +5,9 @@ Vamos criar uma aplicação para que prestadores de serviço, como eletricistas,
 Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos aos prestadores de serviço, conectando os dois lados e encurtando este caminho.
 
 
-Documentação da API
+
+<h1>Documentação da API</h1>
+
 
 /initial - botões com links, usando o verbo GET para receber como resposta as páginas de login e registro.
 
