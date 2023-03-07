@@ -8,7 +8,7 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 
 
 
-<h1>Endpoints da API</h1>
+<h1>Endpoints</h1>
 
 
 /initial - botões com links, usando o verbo GET para receber como resposta as páginas de login e registro.
