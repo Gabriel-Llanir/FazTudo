@@ -2,19 +2,22 @@ package br.com.fiap.appservico.Utils;
 
 import java.util.InputMismatchException;
 
+// classe que possui todos os métodos de verificação necessários em outras classes
 public class Verifica {
-    
-    private String removeCaracteresEspeciais(String cpf) {
-		if (cpf.contains(".")) {
-			cpf = cpf.replace(".", "");
-		}
-		if (cpf.contains("-")) {
-			cpf = cpf.replace("-", "");
-		}
-		return cpf;
-	}
 
-    public boolean verficacpf(String cpf) {
+    // função para remover caracteres especiais de um cpf
+    private String removeCaracteresEspeciais(String cpf) {
+	if (cpf.contains(".")) {
+		cpf = cpf.replace(".", "");
+		}
+	if (cpf.contains("-")) {
+		cpf = cpf.replace("-", "");
+	}
+	return cpf;
+    }
+
+     // função para validar um cpf
+     public boolean verficacpf(String cpf) {
 
         cpf = removeCaracteresEspeciais(cpf);
 
@@ -26,48 +29,54 @@ public class Verifica {
             cpf.equals("88888888888") || cpf.equals("99999999999") ||
             (cpf.length() != 11))
             return(false);
-        return false;
 
         char dig11, dig10;
-		int sm, i, r, num, peso;
+	int sm, i, r, num, peso;
 
-		try {
-			sm = 0;
-			peso = 10;
-			for (i = 0; i < 9; i++) {     
-				num = (int) (cpf.charAt(i) - 48);
-				sm = sm + (num * peso);
-				peso = peso - 1;
-			}
-
-			r = 11 - (sm % 11);
-			if ((r == 10) || (r == 11))
-				dig10 = '0';
-			else
-				dig10 = (char) (r + 48);
-
-			sm = 0;
-			peso = 11;
-			for (i = 0; i < 10; i++) {
-				num = (int) (cpf.charAt(i) - 48);
-				sm = sm + (num * peso);
-				peso = peso - 1;
-			}
-
-			r = 11 - (sm % 11);
-			if ((r == 10) || (r == 11))
-				dig11 = '0';
-			else
-				dig11 = (char) (r + 48);
-
-			if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10)))
-				return (true);
-			else
-				return (false);
-		} catch (InputMismatchException erro) {
-			return (false);
+	try {
+		sm = 0;
+		peso = 10;
+		for (i = 0; i < 9; i++) {     
+			num = (int) (cpf.charAt(i) - 48);
+			sm = sm + (num * peso);
+			peso = peso - 1;
 		}
+
+		r = 11 - (sm % 11);
+		if ((r == 10) || (r == 11))
+			dig10 = '0';
+		else
+			dig10 = (char) (r + 48);
+
+		sm = 0;
+		peso = 11;
+		for (i = 0; i < 10; i++) {
+			num = (int) (cpf.charAt(i) - 48);
+			sm = sm + (num * peso);
+			peso = peso - 1;
+		}
+
+		r = 11 - (sm % 11);
+		if ((r == 10) || (r == 11))
+			dig11 = '0';
+		else
+			dig11 = (char) (r + 48);
+
+		if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10)))
+			return (true);
+		else
+			return (false);
+	} catch (InputMismatchException erro) {
+		return (false);
 	}
-    
+     }
+
+	// função para validar uma idade
+	public boolean verificaIdade(int idade) {
+		if (idade >= 18)
+			return true;
+		else
+			return false;
+	}
 
 }
