@@ -5,14 +5,17 @@ import java.util.UUID;
 
 import br.com.fiap.appservico.Utils.Verifica;
 
+// classe do prestador de serviços, que extende a classe Verifica para usar seus métodos de verificação
 public class Usuario extends Verifica {
-    
+
+    // atributos padrão
     private UUID id;
     private String nome;
     private String senha;
     private String cpf;
     private int idade;
-    
+
+    // método da classe Usuário para criar uma publicação na plataforma
     public ArrayList<String> publicar(String titulo, String descricao) {
         ArrayList<String> info = new ArrayList<String>();
         info.add(titulo);
@@ -20,6 +23,7 @@ public class Usuario extends Verifica {
         return info;
     }
 
+    // contrutor com atributos
     public Usuario(String nome, String senha, String cpf, int idade) {
         id = UUID.randomUUID();
         this.nome = nome;
@@ -28,16 +32,14 @@ public class Usuario extends Verifica {
         this.idade = idade;
     }
 
+    // contrutor padrão
     public Usuario() {
         super();
     }
 
+    // getters e setters
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -56,11 +58,11 @@ public class Usuario extends Verifica {
         this.senha = senha;
     }
 
-    public String getCpf() {
+    public String getcpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setcpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -71,5 +73,4 @@ public class Usuario extends Verifica {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-
 }
