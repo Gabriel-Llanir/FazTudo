@@ -13,7 +13,7 @@ public class UsuarioController {
     Usuario usuario = new Usuario("Gabriel", "Gabriel123", "123.456.789-11", 20);
 
     // função de mapeamento, para colocar na aplicação uma página que exibe a classe criada
-    @GetMapping("/Usuario")
+    @GetMapping("/Profile")
     public Usuario show(){
         return usuario;
     }
@@ -23,7 +23,7 @@ public class UsuarioController {
     para colocar na aplicação uma página
     que exibe o funcionamento da função de publicação da classe Usuario
     */
-    @GetMapping("/Usuario/publicar")
+    @GetMapping("/Main/Publicar")
     public ArrayList<String> publicar() {
         ArrayList<String> publicacao = new ArrayList<String>();
         publicacao = usuario.publicar("Publicação legal", "Esta é uma publicação muito legal!");
