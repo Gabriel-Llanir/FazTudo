@@ -1,4 +1,4 @@
-package sla;
+package br.com.fiap.appservico.Pages;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
