@@ -1,4 +1,4 @@
-package sla;
+package br.com.fiap.appservico.main;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
