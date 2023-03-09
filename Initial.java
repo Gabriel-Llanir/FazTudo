@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class Initial {
 
-	@GetMapping("/initial")
+	@GetMapping("/Initial")
 	public String initial() {
 		return "Página inicial";
 	}
