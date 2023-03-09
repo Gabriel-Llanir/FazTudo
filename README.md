@@ -11,12 +11,14 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 <h1>Endpoints</h1>
 
 
-/initial - botões com links, usando o verbo GET para receber como resposta a página inicial.
+/Initial - botões com links, usando o verbo GET para receber como resposta a página inicial.
 
-/login - formulário de login, usando o verbo GET para requerer as informações e compará-las no banco de dados, recebendo como resposta o login na plataforma.
+/Login - formulário de login, usando o verbo GET para requerer as informações e compará-las no banco de dados, recebendo como resposta o login na plataforma.
 
-/register - formulário de registro, usando o verbo POST para enviar ao banco de dados um novo registro.
+/Register - formulário de registro, usando o verbo POST para enviar ao banco de dados um novo registro.
 
-/profile - na página de perfil o usuário é capaz de fazer a requisição de alterar seus dados, usando o verbo PATCH para atualizar as informações.
+/Profile - na página de perfil o usuário é capaz de fazer a requisição de alterar seus dados, usando o verbo PATCH para atualizar as informações.
 
-/main - na página pricipal da plataforma, os usuários podem fazer uma publicação, usando o verbo POST para enviar as informações do chamado ao banco de dados e criando uma publicação na plataforma.
+/Main - na página pricipal da plataforma, os usuários podem fazer uma publicação, usando o verbo POST para enviar as informações do chamado ao banco de dados e criando uma publicação na plataforma.
+
+/Main/Publicar - na página principal, usando o verbo GET para requerer as informações da publicação.
