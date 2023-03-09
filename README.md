@@ -11,7 +11,7 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 <h1>Endpoints</h1>
 
 
-/initial - botões com links, usando o verbo GET para receber como resposta as páginas de login e registro.
+/initial - botões com links, usando o verbo GET para receber como resposta a página inicial.
 
 /login - formulário de login, usando o verbo GET para requerer as informações e compará-las no banco de dados, recebendo como resposta o login na plataforma.
 
