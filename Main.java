@@ -8,12 +8,12 @@ public class Main {
 
 	Usuario usuario = new Usuairo();	
 	
-	@GetMapping("/main")
+	@GetMapping("/Main")
 	public String main() {
 		return "Página Principal";
 	}
 	
-	@PostMapping("/main/publicar")
+	@PostMapping("/Main/Publicar")
 	public ArrayList<String> mainPubli() {
 		return usuario.publicar;
 	}
