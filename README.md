@@ -17,6 +17,4 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 
 /Profile - na página de perfil o usuário é capaz de fazer a requisição de alterar seus dados, usando o verbo PATCH para atualizar as informações.
 
-/Main - na página pricipal da plataforma, os usuários podem fazer uma publicação, usando o verbo POST para enviar as informações do chamado ao banco de dados e criando uma publicação na plataforma.
-
-/Main/Publicar - na página principal, usando o verbo GET para requerer as informações da publicação.
+/Main - na página principal, usando o verbo POST para postar uma publicação do Usuário.
