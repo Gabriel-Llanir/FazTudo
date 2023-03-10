@@ -15,6 +15,6 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 
 /Register - formulário de registro, usando o verbo POST para enviar ao banco de dados um novo registro.
 
-/Profile - na página de perfil o usuário é capaz de fazer a requisição de alterar seus dados, usando o verbo PATCH para atualizar as informações.
+/Profile - na página de perfil o usuário é capaz de fazer a requisição de alterar seus dados, usando o verbo PUT para atualizar as informações.
 
 /Main/Publish/id - na página principal, método que usa o verbo POST para postar uma publicação do Usuário com id; método que usa o verbo DELETE para deletar uma publicação do Usuário com id; método que usa o verbo PUT para atualizar uma publicação do Usuário com id.
