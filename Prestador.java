@@ -26,11 +26,6 @@ public class Prestador extends Verifica{
         this.status = status;
     }
 
-    // contrutor padrão
-    public Prestador() {
-        super();
-    }
-
     // getters e setters
     public UUID getId() {
         return id;
@@ -65,4 +60,14 @@ public class Prestador extends Verifica{
     public void setStatus(char status) {
         this.status = status;
     }
+
+	@Override
+	public String toString() {
+		return "Prestador [id=" + id + ", nome=" + nome + ", senha=" + senha + ", cpf=" + cpf + ", idade=" + idade
+				+ ", status=" + status + ", getId()=" + getId() + ", getNome()=" + getNome() + ", getSenha()="
+				+ getSenha() + ", getcpf()=" + getcpf() + ", getIdade()=" + getIdade() + ", getStatus()=" + getStatus()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+    
 }
