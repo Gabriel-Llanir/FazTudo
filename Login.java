@@ -6,7 +6,7 @@ public class Login {
 
 	@GetMapping("/Login")
 	public String login() {
-		return "Formulário de Login";
+		return "Informações do formulário de Login";
 	}
 	
 }
