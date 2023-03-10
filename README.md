@@ -14,7 +14,6 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 /Perfil - na página de perfil, usando o verbo GET para mostrar as informações do perfil.
 
 /Perfil - na página de perfil, usando o verbo PUT para atualizar as informações do perfil.
-
 /Perfil - na página de perfil, usando o verbo DELETE para deletar o perfil.
 <hr>
 /Login -  na página de login, usando o verbo GET para requerer as informações e compará-las no banco de dados.
