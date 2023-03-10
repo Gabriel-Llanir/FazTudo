@@ -17,4 +17,4 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 
 /Profile - na página de perfil o usuário é capaz de fazer a requisição de alterar seus dados, usando o verbo PATCH para atualizar as informações.
 
-/Main - na página principal, usando o verbo POST para postar uma publicação do Usuário.
+/Main/Publish/id - na página principal, método que usa o verbo POST para postar uma publicação do Usuário com id; método que usa o verbo DELETE para deletar uma publicação do Usuário com id; método que usa o verbo PUT para atualizar uma publicação do Usuário com id.
