@@ -11,8 +11,6 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 <h1>Endpoints</h1>
 
 
-/Initial - botões com links, usando o verbo GET para receber como resposta a página inicial.
-
 /Login - formulário de login, usando o verbo GET para requerer as informações e compará-las no banco de dados, recebendo como resposta o login na plataforma.
 
 /Register - formulário de registro, usando o verbo POST para enviar ao banco de dados um novo registro.
