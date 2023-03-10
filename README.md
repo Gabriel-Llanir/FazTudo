@@ -24,5 +24,7 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 /Principal/Publicar - na página principal, método que usa o verbo POST para postar uma publicação do Usuário.
 <br>
 /Principal/Publicacao/id - na página principal, função que usa o verbo GET para procurar uma publicação do Usuário, com id da publicação.
+<br>
 /Principal/Publicacao/id - na página principal, função que usa o verbo PUT para atualizar uma publicação do Usuário, com id da publicação.
+<br>
 /Principal/Publicacao/id - na página principal, função que usa o verbo DELETE para deletar uma publicação do Usuário, com id da publicação.
