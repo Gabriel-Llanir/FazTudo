@@ -11,11 +11,14 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 <h1>Endpoints</h1>
 
 
-/Perfil - na página de perfil, usando o verbo GET para mostrar as informações do perfil.<br>
-/Perfil - na página de perfil, usando o verbo PUT para atualizar as informações do perfil.<br>
+/Perfil - na página de perfil, usando o verbo GET para mostrar as informações do perfil.
+<br>
+/Perfil - na página de perfil, usando o verbo PUT para atualizar as informações do perfil.
+<br>
 /Perfil - na página de perfil, usando o verbo DELETE para deletar o perfil.
 <hr>
-/Login -  na página de login, usando o verbo GET para requerer as informações e compará-las no banco de dados.<br>
+/Login -  na página de login, usando o verbo GET para requerer as informações e compará-las no banco de dados.
+<br>
 /Registro - na página de registro, em um formulário de registro, usando o verbo POST para enviar ao banco de dados um novo registro.
 <hr> 
 /Principal/Publicar - na página principal, método que usa o verbo POST para postar uma publicação do Usuário.
