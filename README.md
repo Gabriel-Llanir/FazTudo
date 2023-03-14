@@ -21,7 +21,7 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 <br>
 /Registro - na página de registro, em um formulário de registro, usando o verbo POST para enviar ao banco de dados um novo registro.
 <hr> 
-/Principal/Publicar - na página principal, método que usa o verbo POST para postar uma publicação do Usuário.
+/Principal/Publicar/id - na página principal, método que usa o verbo POST para postar uma publicação do Usuário.
 <br>
 /Principal/Publicacao/id - na página principal, função que usa o verbo GET para procurar uma publicação do Usuário, com id da publicação.
 <br>
