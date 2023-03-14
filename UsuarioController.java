@@ -2,55 +2,88 @@ package br.com.fiap.appservico.Controllers;
 
 import java.util.ArrayList;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import br.com.fiap.appservico.Models.Usuario;
 
 // classe de controle para teste da classe Usuario
 @RestController
 public class UsuarioController {
 
-    // contrução de uma classe Usuario
-    Usuario usuario = new Usuario("Gabriel", "Gabriel123", "123.456.789-11", 20);
-    
+    // construção de uma lista de Usuários
+    ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
+    // contrução de uma classe Usuário
+    Usuario usuario = new Usuario(1, "Gabriel", "Gabriel123", "123.456.789-11", 20);
+
+    //---------------------------------
+
+    // criando um log
+    Logger log = LoggerFactory.getLogger(UsuarioController.class);
+
     //---------------------------------
 
     // função de mapeamento para colocar, na aplicação, uma página que exibe o perfil do usuário
-    @GetMapping("/Perfil")
-    public Usuario perfil(){
-        return usuario;
+    @GetMapping("/Perfil/{id}")
+    public ResponseEntity<Usuario> perfil(@PathVariable long id){
+        var usuario = usuarios
+                .stream()
+                .filter(d -> d.getId().equals(id))
+                .findFirst();
+
+        if(usuario.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(usuario.get());
     }
 
     // função de mapeamento para colocar, na aplicação, uma função para atualizar o perfil do usuário
-    @PutMapping("/Perfil")
-    public Usuario perfilPut(@RequestBody Usuario usuario){
-        return usuario;
+    @PutMapping("/Perfil/{id}")
+    public void atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+
     }
 
     // função de mapeamento para colocar, na aplicação, uma função que deleta o perfil do usuário
-    @DeleteMapping("/Perfil")
-    public boolean perfilDel(){
-        return true;
+    @DeleteMapping("/Perfil/{id}")
+    public ResponseEntity<Usuario> perfilDel(@PathVariable long id){
+        var usuario = usuarios
+                .stream()
+                .filter(d -> d.getId().equals(id))
+                .findFirst();
+
+        if(usuario.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        usuarios.remove(usuario.get());
+        return ResponseEntity.noContent().build();
     }
     
     //---------------------------------
     
     // função de mapeamento para colocar, na aplicação, uma página de login do usuário
-    @GetMapping("/Login")
-    public boolean login(@RequestBody String cpf, @RequestBody String senha){
-        return true;
+    @GetMapping("/Login/{id}")
+    public ResponseEntity<Usuario> login(@PathVariable long id){
+        var usuario = usuarios
+                .stream()
+                .filter(d -> d.getId().equals(id))
+                .findFirst();
+
+        if(usuario.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(usuario.get());
     }
 
     // função de mapeamento para colocar, na aplicação, uma página de registro do usuário
     @PostMapping("/Registro")
-    public boolean registro(@RequestBody Usuario usuario){
-        return true;
+    public ResponseEntity<Usuario> registro(@RequestBody Usuario usuario){
+        log.info("Registrando usuário: "+usuario);
+        usuarios.add(usuario);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
     
 
@@ -61,8 +94,12 @@ public class UsuarioController {
     */
     @ResponseBody
     @PostMapping("/Principal/Publicar")
-    public ArrayList<String> princPubli(@RequestBody Usuario usuario, @RequestBody String titulo, @RequestBody String descricao) {
-        return usuario.publicar(usuario.getPublicacoes(), titulo, descricao);
+    public ResponseEntity<ArrayList<String>> princPubli(@RequestBody Usuario usuario, String titulo, @RequestBody String descricao) {
+        log.info("Registrando publicação: "+usuario);
+        var publicacao = usuario.publicar(titulo, descricao, 1);
+        var publicacoes = usuario.arrayPublis(publicacao);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(publicacao);
     }
     
     @GetMapping("/Principal/Publicacao/{id}")
