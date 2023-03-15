@@ -1,47 +1,44 @@
 package br.com.fiap.appservico.Models;
 
 import java.util.ArrayList;
-import java.util.UUID;
-
-import br.com.fiap.appservico.Utils.Verifica;
 
 // classe do prestador de serviços, que extende a classe Verifica para usar seus métodos de verificação
-public class Usuario extends Verifica {
+public class Usuario {
 
 	// atributos padrão
-	private UUID id;
+	private long id;
 	private String nome;
 	private String senha;
 	private String cpf;
 	private int idade;
-	private ArrayList<ArrayList<String>> publicacoes;
 
 	// método da classe Usuário para criar uma publicação na plataforma
-	public ArrayList<String> publicar(ArrayList<ArrayList<String>> array, String titulo, String descricao) {
-		ArrayList<String> info = new ArrayList<String>();
+	public ArrayList publicar(long usuId, String titulo, String descricao, long id) {
+		ArrayList info = new ArrayList();
+
+		info.add(usuId);
 		info.add(titulo);
 		info.add(descricao);
-		info.add("Id Publicação: " + UUID.randomUUID());
-		array.add(info);
+		info.add(id);
 		return info;
 	}
 
 	// contrutor com atributos
-	public Usuario(String nome, String senha, String cpf, int idade) {
-		
-		ArrayList<ArrayList<String>> publicacoes = new ArrayList<ArrayList<String>>();
-		
-		id = UUID.randomUUID();
+	public Usuario(long id, String nome, String senha, String cpf, int idade) {
+		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
 		this.cpf = cpf;
 		this.idade = idade;
-		this.publicacoes = publicacoes;
 	}
 
 	// getters e setters
-	public UUID getId() {
+	public Long getId() {
 		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -74,10 +71,6 @@ public class Usuario extends Verifica {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
-	}
-
-	public ArrayList<ArrayList<String>> getPublicacoes() {
-		return publicacoes;
 	}
 
 	@Override
