@@ -6,14 +6,14 @@ import java.util.ArrayList;
 public class Usuario {
 
 	// atributos padrão
-	private long id;
+	private Long id;
 	private String nome;
 	private String senha;
 	private String cpf;
 	private int idade;
 
 	// método da classe Usuário para criar uma publicação na plataforma
-	public ArrayList publicar(long usuId, String titulo, String descricao, long id) {
+	public ArrayList publicar(Long usuId, String titulo, String descricao, Long id) {
 		ArrayList info = new ArrayList();
 
 		info.add(usuId);
@@ -24,7 +24,7 @@ public class Usuario {
 	}
 
 	// contrutor com atributos
-	public Usuario(long id, String nome, String senha, String cpf, int idade) {
+	public Usuario(Long id, String nome, String senha, String cpf, int idade) {
 		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
@@ -37,7 +37,7 @@ public class Usuario {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
