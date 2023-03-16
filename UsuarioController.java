@@ -21,7 +21,7 @@ public class UsuarioController extends Verifica {
     ArrayList<ArrayList> publicacoes = new ArrayList<ArrayList>();
 
     // criação de uma variaável para controle de Id
-    long id1 = 1;
+    Long id1 = Long.valueOf(1);
 
     // criando um log
     Logger log = LoggerFactory.getLogger(UsuarioController.class);
@@ -30,7 +30,7 @@ public class UsuarioController extends Verifica {
 
     // função de mapeamento para colocar, na aplicação, uma página que exibe o perfil do usuário
     @GetMapping("/Perfil/{id}")
-    public ResponseEntity<Usuario> perfil(@PathVariable long id){
+    public ResponseEntity<Usuario> perfil(@PathVariable Long id){
         var usuario = usuarios
                 .stream()
                 .filter(d -> d.getId().equals(id))
@@ -44,7 +44,7 @@ public class UsuarioController extends Verifica {
 
     // função de mapeamento para colocar, na aplicação, uma função para atualizar o perfil do usuário
     @PutMapping("/Perfil/{id}")
-    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> perfilPut(@PathVariable Long id, @RequestBody Usuario usuario) {
         var usuarioExistente = usuarios
                 .stream()
                 .filter(d -> d.getId().equals(id))
@@ -63,7 +63,7 @@ public class UsuarioController extends Verifica {
 
     // função de mapeamento para colocar, na aplicação, uma função que deleta o perfil do usuário
     @DeleteMapping("/Perfil/{id}")
-    public ResponseEntity<Usuario> perfilDel(@PathVariable long id){
+    public ResponseEntity<Usuario> perfilDel(@PathVariable Long id){
         var usuario = usuarios
                 .stream()
                 .filter(d -> d.getId().equals(id))
@@ -80,7 +80,7 @@ public class UsuarioController extends Verifica {
     
     // função de mapeamento para colocar, na aplicação, uma página de login do usuário
     @GetMapping("/Login/{id}")
-    public ResponseEntity<Usuario> login(@PathVariable long id){
+    public ResponseEntity<Usuario> login(@PathVariable Long id){
         var usuario = usuarios
                 .stream()
                 .filter(d -> d.getId().equals(id))
@@ -123,7 +123,7 @@ public class UsuarioController extends Verifica {
 
     @ResponseBody
     @GetMapping("/Principal/Publicacao/{id}")
-    public ResponseEntity<ArrayList> princPubliGet(@PathVariable long id) {
+    public ResponseEntity<ArrayList> princPubliGet(@PathVariable Long id) {
         var publicacao = publicacoes
                 .stream()
                 .filter(d -> d.get(3).equals(id))
@@ -137,7 +137,7 @@ public class UsuarioController extends Verifica {
 
     @ResponseBody
     @PutMapping("/Principal/Publicacao/{id}")
-    public ResponseEntity<ArrayList> princPubliPut(@PathVariable long id, @RequestBody ArrayList publi) {
+    public ResponseEntity<ArrayList> princPubliPut(@PathVariable Long id, @RequestBody ArrayList publi) {
         var usuId = publi.get(0);
         var titulo = publi.get(1);
         var desc = publi.get(2);
@@ -155,25 +155,32 @@ public class UsuarioController extends Verifica {
         publi.set(2, desc);
         publicacoes.remove(publiExistente.get());
         publicacoes.add(publi);
-        
+
         return ResponseEntity.ok(publi);
     	
     }
 
     @ResponseBody
     @DeleteMapping("/Principal/Publicacao/{id}")
-    public ResponseEntity<Usuario> princPubliDel(@PathVariable long id) {
-        for(int i = 0; i < publicacoes.size(); i++){
-            
-        }
-        
-        var publi = publicacoes;
+    public ResponseEntity<Usuario> princPubliDel(@PathVariable Long id) {
+        int n = 0;
+        if(publicacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            for(int i = 0; i < publicacoes.size(); i++) {
+                var publi = publicacoes.get(i);
+                var id1 = publi.get(3);
 
-        if(usuario.isEmpty()) {
+                if (id1.equals(id)){
+                    publicacoes.remove(publi);
+                    return ResponseEntity.noContent().build();
+                    n++;
+                }
+            }
+        }
+        if (n != 0) {
             return ResponseEntity.notFound().build();
         }
-        usuarios.remove(usuario.get());
-        return ResponseEntity.noContent().build();
     }
 
 }
