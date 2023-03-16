@@ -1,13 +1,10 @@
 package br.com.fiap.appservico.Models;
 
-import java.util.UUID;
-import br.com.fiap.appservico.Utils.Verifica;
-
 // classe do prestador de serviços, que extende a classe Verifica para usar seus métodos de verificação
-public class Prestador extends Verifica{
+public class Prestador {
 
     // atributos padrão
-    private UUID id;
+    private Long id;
     private String nome;
     private String senha;
     private String cpf;
@@ -18,7 +15,7 @@ public class Prestador extends Verifica{
 
     // construtor com atributos
     public Prestador(String nome, String senha, String cpf, int idade, char status) {
-        id = UUID.randomUUID();
+        this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
@@ -27,36 +24,50 @@ public class Prestador extends Verifica{
     }
 
     // getters e setters
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getSenha() {
         return senha;
     }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     public String getcpf() {
         return cpf;
     }
+
     public void setcpf(String cpf) {
         this.cpf = cpf;
     }
+
     public int getIdade() {
         return idade;
     }
+
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
     public int getStatus() {
         return status;
     }
+
     public void setStatus(char status) {
         this.status = status;
     }
