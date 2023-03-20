@@ -18,6 +18,8 @@ $ git clone https://github.com/InsaneXurow10/App-prestador-servico
 
 # Endpoints
 
+Divididos pelas páginas do Front-end às quais eles fazem referência.
+
 ## Página de Perfil
 /Perfil/{id} - usando o verbo GET para mostrar as informações do perfil.
 
