@@ -1,4 +1,4 @@
-package br.com.fiap.appservico.Models;
+package br.com.fiap.appservico.Model;
 
 // classe do prestador de serviços, que extende a classe Verifica para usar seus métodos de verificação
 public class Prestador {
