@@ -1,4 +1,4 @@
-package br.com.fiap.appservico.Controllers;
+package br.com.fiap.appservico.Controller;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import br.com.fiap.appservico.Models.Prestador;
+import br.com.fiap.appservico.Model.Prestador;
 import br.com.fiap.appservico.Utils.Verifica;
 
 // classe de controle para teste da classe Prestador
