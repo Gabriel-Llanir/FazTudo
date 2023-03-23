@@ -1,101 +1,53 @@
 package br.com.fiap.appservico.Controller;
 
-import java.util.ArrayList;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import br.com.fiap.appservico.Get.DadosLoginPrestador;
+import br.com.fiap.appservico.Get.DadosMostrarPrestador;
 import br.com.fiap.appservico.Model.Prestador;
+import br.com.fiap.appservico.Post.DadosRegistroPrestador;
+import br.com.fiap.appservico.Put.DadosAtualizacaoPrestador;
+import br.com.fiap.appservico.Repositories.PrestadorRepository;
 import br.com.fiap.appservico.Utils.Verifica;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
-// classe de controle para teste da classe Prestador
+import java.util.Optional;
+
 @RestController
+@RequestMapping("prestador")
 public class PrestadorController extends Verifica {
 
-    // construção de um array de Prestadores
-    ArrayList<Prestador> prestadores = new ArrayList<Prestador>();
+    @Autowired
+    private PrestadorRepository repository;
 
-    // construção de um log
-    Logger log = new LoggerFactory.getLogger(PrestadorController.class);
-
-    //---------------------------------
-// função de mapeamento para colocar, na aplicação, uma página que exibe o perfil do usuário
-    @GetMapping("/Perfil/{id}")
-    public ResponseEntity<Prestador> perfil(@PathVariable Long id){
-        var prestador = prestadores
-                .stream()
-                .filter(d -> d.getId().equals(id))
-                .findFirst();
-
-        if(prestador.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(prestador.get());
+    @GetMapping("/{id}")
+    public Optional<DadosMostrarPrestador> prestador(@PathVariable Long id){
+        return repository.findById(id).map(DadosMostrarPrestador::new);
     }
 
-    // função de mapeamento para colocar, na aplicação, uma função para atualizar o perfil do usuário
-    @PutMapping("/Perfil/{id}")
-    public ResponseEntity<Prestador> perfilPut(@PathVariable Long id, @RequestBody Prestador prestador) {
-        var prestadorExistente = prestadores
-                .stream()
-                .filter(d -> d.getId().equals(id))
-                .findFirst();
-
-        if(prestadorExistente.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        prestador.setId(id);
-        prestadores.remove(prestadorExistente.get());
-        prestadores.add(prestador);
-
-        return ResponseEntity.ok(prestador);
+    @PutMapping
+    @Transactional
+    public void prestadorPut(@RequestBody @Valid DadosAtualizacaoPrestador dados) {
+        var prestador = repository.getReferenceById(dados.id());
+        prestador.atualizarInformacoes(dados);
     }
 
-    // função de mapeamento para colocar, na aplicação, uma função que deleta o perfil do usuário
-    @DeleteMapping("/Perfil/{id}")
-    public ResponseEntity<Prestador> perfilDel(@PathVariable Long id){
-        var prestador = prestadores
-                .stream()
-                .filter(d -> d.getId().equals(id))
-                .findFirst();
-
-        if(prestador.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        prestadores.remove(prestador.get());
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void prestadorDel(@PathVariable Long id){
+        var prestador = repository.getReferenceById(id);
+        prestador.excluir();
     }
 
-    //---------------------------------
-
-    // função de mapeamento para colocar, na aplicação, uma página de login do usuário
-    @GetMapping("/Login/{id}")
-    public ResponseEntity<Prestador> login(@PathVariable Long id){
-        var prestador = prestadores
-                .stream()
-                .filter(d -> d.getId().equals(id))
-                .findFirst();
-
-        if(prestador.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(prestador.get());
+    @PostMapping
+    @Transactional
+    public void registro(@RequestBody @Valid DadosRegistroPrestador dados) {
+        repository.save(new Prestador(dados));
     }
 
-    // função de mapeamento para colocar, na aplicação, uma página de registro do usuário
-    @PostMapping("/Registro")
-    public ResponseEntity<Prestador> registro(@RequestBody Prestador prestador){
-        if (verficacpf(prestador.getcpf()) && verificaIdade(prestador.getIdade())){
-            log.info("Registrando usuário: "+prestador);
-            prestadores.add(prestador);
-            return ResponseEntity.status(HttpStatus.CREATED).body(prestador);
-        }
-        else
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+    @GetMapping("/login")
+    public Optional<DadosLoginPrestador> login(@RequestBody String cpf, @RequestBody String senha){
+        return repository.findByCpfAndSenha(cpf, senha);
     }
-
-
 }
