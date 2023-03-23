@@ -43,7 +43,7 @@ Divididos pelas páginas do Front-end às quais eles fazem referência.
 /prestador/login - usando o verbo GET para efetuar o login na plataforma como prestador.
 
 ## Página Principal
-/Principal/Publicar - função que usa o verbo POST para postar uma publicação do Usuário.
+/Principal/Publicacao - função que usa o verbo POST para postar uma publicação do Usuário.
 
 /Principal/Publicacao/{id} - função que usa o verbo GET para procurar uma publicação do Usuário, com id da publicação.
 
