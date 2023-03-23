@@ -1,84 +1,48 @@
 package br.com.fiap.appservico.Model;
 
-import java.util.ArrayList;
+import br.com.fiap.appservico.Post.DadosRegistroUsuario;
+import br.com.fiap.appservico.Put.DadosAtualizacaoUsuario;
+import jakarta.persistence.*;
+import lombok.*;
 
-// classe do prestador de serviços, que extende a classe Verifica para usar seus métodos de verificação
+@EqualsAndHashCode(of = "id")
+@ToString
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="usuarios")
+@Entity(name="Usuario")
 public class Usuario {
 
-	// atributos padrão
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String senha;
 	private String cpf;
 	private int idade;
+	private Boolean ativo;
 
-	// método da classe Usuário para criar uma publicação na plataforma
-	public ArrayList publicar(Long usuId, String titulo, String descricao, Long id) {
-		ArrayList info = new ArrayList();
+	@Embedded
+	private Publicacao publicacao;
 
-		info.add(usuId);
-		info.add(titulo);
-		info.add(descricao);
-		info.add(id);
-		return info;
+	public Usuario(DadosRegistroUsuario dados) {
+		this.ativo = true;
+		this.nome = dados.nome();
+		this.senha = dados.senha();
+		this.cpf = dados.cpf();
+		this.idade = dados.idade();
 	}
 
-	// contrutor com atributos
-	public Usuario(Long id, String nome, String senha, String cpf, int idade) {
-		this.id = id;
-		this.nome = nome;
-		this.senha = senha;
-		this.cpf = cpf;
-		this.idade = idade;
+	public void atualizarInformacoes(DadosAtualizacaoUsuario dados) {
+		if (dados.nome()!=null)
+			this.nome= dados.nome();
+		if (dados.senha()!=null)
+			this.senha= dados.senha();
 	}
 
-	// getters e setters
-	public Long getId() {
-		return id;
+	public void excluir() {
+		this.ativo = false;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getcpf() {
-		return cpf;
-	}
-
-	public void setcpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", senha=" + senha + ", cpf=" + cpf + ", idade=" + idade
-				+ ", getId()=" + getId() + ", getNome()=" + getNome() + ", getSenha()=" + getSenha() + ", getcpf()="
-				+ getcpf() + ", getIdade()=" + getIdade() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
-	}
-	
 }
