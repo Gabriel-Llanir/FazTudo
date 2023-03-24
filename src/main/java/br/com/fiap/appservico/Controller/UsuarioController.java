@@ -1,13 +1,15 @@
 package br.com.fiap.appservico.Controller;
 
+import java.util.List;
 import java.util.Optional;
-
 import br.com.fiap.appservico.Get.DadosLoginUsuario;
 import br.com.fiap.appservico.Get.DadosMostrarUsuario;
+import br.com.fiap.appservico.Model.Publicacao;
 import br.com.fiap.appservico.Model.Usuario;
 import br.com.fiap.appservico.Post.DadosRegistroUsuario;
 import br.com.fiap.appservico.Put.DadosAtualizacaoUsuario;
 import br.com.fiap.appservico.Repositories.UsuarioRepository;
+import jakarta.persistence.EntityManager;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,12 @@ public class UsuarioController extends Verifica {
         return repository.findById(id).map(DadosMostrarUsuario::new);
     }
 
+    @GetMapping("/{id}/publicacoes")
+    public List<Publicacao> publicacoes(@PathVariable Long id){
+        Usuario usuario = repository.getReferenceById(id);
+        return usuario.getPublicacoes();
+    }
+
     @PutMapping
     @Transactional
     public void usuarioPut(@RequestBody @Valid DadosAtualizacaoUsuario dados) {
@@ -35,9 +43,15 @@ public class UsuarioController extends Verifica {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void usuarioDel(@PathVariable Long id){
+    public void usuarioExcluir(@PathVariable Long id){
         var usuario = repository.getReferenceById(id);
         usuario.excluir();
+    }
+
+    @DeleteMapping("/remove/{id}")
+    @Transactional
+    public void usuarioDel(@PathVariable Long id){
+        repository.deleteById(id);
     }
 
     @PostMapping
