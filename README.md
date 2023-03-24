@@ -27,7 +27,11 @@ Divididos pelas páginas do Front-end às quais eles fazem referência.
 
 /usuario/{id} - usando o verbo GET para mostrar as informações do usuário.
 
-/usuario/{id} - usando o verbo DELETE para excluir um usuário do banco de dados.
+/usuario/{id}/publicacoes - usando o verbo GET para mostrar todas as publicações do usuário.
+
+/usuario/{id} - usando o verbo DELETE para excluir/desativar um usuário no banco de dados.
+
+/usuario/remove/{id} - usando o verbo DELETE para remover completamente um usuário do banco de dados.
 
 /usuario/login - usando o verbo GET para efetuar o login na plataforma como usuário.
 
@@ -38,15 +42,19 @@ Divididos pelas páginas do Front-end às quais eles fazem referência.
 
 /prestador/{id} - usando o verbo GET para mostrar as informações do prestador.
 
-/prestador/{id} - usando o verbo DELETE para excluir um prestador do banco de dados.
+/prestador/{id} - usando o verbo DELETE para excluir/desativar um prestador no banco de dados.
+
+/prestador/remove/{id} - usando o verbo DELETE para remover completamente um prestador do banco de dados.
 
 /prestador/login - usando o verbo GET para efetuar o login na plataforma como prestador.
 
 ## Página Principal
-/Principal/Publicacao - função que usa o verbo POST para postar uma publicação do Usuário.
+/principal/publicacao - função que usa o verbo GET para mostrar todas as publicações na plataforma.
 
-/Principal/Publicacao/{id} - função que usa o verbo GET para procurar uma publicação do Usuário, com id da publicação.
+/principal/publicacao - função que usa o verbo POST para postar uma publicação do Usuário na plataforma.
 
-/Principal/Publicacao/{id} - função que usa o verbo PUT para atualizar uma publicação do Usuário, com id da publicação.
+/principal/publicacao/{usuario_id}/{id} - função que usa o verbo GET para procurar uma publicação do Usuário, com id da publicação e do usuário.
 
-/Principal/Publicacao/{id} - função que usa o verbo DELETE para deletar uma publicação do Usuário, com id da publicação.
+/principal/publicacao/{usuario_id}/{id} - função que usa o verbo PUT para atualizar uma publicação do Usuário, com id da publicação e do usuário.
+
+/principal/publicacao/{usuario_id}/{id} - função que usa o verbo DELETE para apagar uma publicação do Usuário, com id da publicação e do usuário.
