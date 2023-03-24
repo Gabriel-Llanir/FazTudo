@@ -35,9 +35,15 @@ public class PrestadorController extends Verifica {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void prestadorDel(@PathVariable Long id){
+    public void prestadorExcluir(@PathVariable Long id){
         var prestador = repository.getReferenceById(id);
         prestador.excluir();
+    }
+
+    @DeleteMapping("/remove/{id}")
+    @Transactional
+    public void prestadorDel(@PathVariable Long id){
+        repository.deleteById(id);
     }
 
     @PostMapping
