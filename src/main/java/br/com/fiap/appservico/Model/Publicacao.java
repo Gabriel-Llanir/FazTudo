@@ -1,5 +1,9 @@
 package br.com.fiap.appservico.Model;
 
+import br.com.fiap.appservico.Post.DadosRegistroPublicacao;
+import br.com.fiap.appservico.Put.DadosAtualizacaoPublicacao;
+import br.com.fiap.appservico.Utils.PublicacaoPK;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,14 +15,33 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name="publicacoes")
 @Entity(name="Publicacao")
-@Embeddable
 public class Publicacao {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long usuId;
+    @EmbeddedId
+    private PublicacaoPK id;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @JsonBackReference
+    private Usuario usuario;
+
     private String titulo;
     private String descricao;
 
+    public Publicacao(DadosRegistroPublicacao dados) {
+        this.titulo = dados.titulo();
+        this.descricao = dados.descricao();
+    }
+
+    public Publicacao(Usuario usuario){
+        this.setUsuario(usuario);
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoPublicacao dados){
+        if (dados.titulo()!=null)
+            this.titulo = dados.titulo();
+
+        if (dados.descricao()!=null)
+            this.descricao = dados.descricao();
+    }
 }
