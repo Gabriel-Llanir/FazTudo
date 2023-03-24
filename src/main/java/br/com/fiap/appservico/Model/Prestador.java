@@ -21,12 +21,13 @@ public class Prestador {
     private String nome;
     private String senha;
     private String cpf;
-    private int idade;
-    private char status;
+    private Integer idade;
+    private Boolean status;
     private Boolean ativo;
 
     public Prestador(DadosRegistroPrestador dados) {
         this.ativo = true;
+        this.status = false;
         this.nome = dados.nome();
         this.senha = dados.senha();
         this.cpf = dados.cpf();
