@@ -2,8 +2,11 @@ package br.com.fiap.appservico.Model;
 
 import br.com.fiap.appservico.Post.DadosRegistroUsuario;
 import br.com.fiap.appservico.Put.DadosAtualizacaoUsuario;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(of = "id")
 @ToString
@@ -21,11 +24,12 @@ public class Usuario {
 	private String nome;
 	private String senha;
 	private String cpf;
-	private int idade;
+	private Integer idade;
 	private Boolean ativo;
 
-	@Embedded
-	private Publicacao publicacao;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<Publicacao> publicacoes = new ArrayList<>();
 
 	public Usuario(DadosRegistroUsuario dados) {
 		this.ativo = true;
@@ -38,6 +42,7 @@ public class Usuario {
 	public void atualizarInformacoes(DadosAtualizacaoUsuario dados) {
 		if (dados.nome()!=null)
 			this.nome= dados.nome();
+
 		if (dados.senha()!=null)
 			this.senha= dados.senha();
 	}
