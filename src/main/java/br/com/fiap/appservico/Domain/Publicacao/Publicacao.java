@@ -14,10 +14,11 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name="publicacoes")
 @Entity(name="Publicacao")
+@IdClass(PublicacaoPK.class)
 public class Publicacao {
 
-    @EmbeddedId
-    private PublicacaoPK id;
+    @Id
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
