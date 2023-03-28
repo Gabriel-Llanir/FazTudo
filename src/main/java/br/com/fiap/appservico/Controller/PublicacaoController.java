@@ -1,11 +1,7 @@
 package br.com.fiap.appservico.Controller;
 
-import br.com.fiap.appservico.Get.DadosMostrarPublicacao;
-import br.com.fiap.appservico.Model.Publicacao;
-import br.com.fiap.appservico.Post.DadosRegistroPublicacao;
-import br.com.fiap.appservico.Put.DadosAtualizacaoPublicacao;
-import br.com.fiap.appservico.Repositories.PublicacaoRepository;
-import br.com.fiap.appservico.Repositories.UsuarioRepository;
+import br.com.fiap.appservico.Domain.Publicacao.*;
+import br.com.fiap.appservico.Domain.Usuario.UsuarioRepository;
 import br.com.fiap.appservico.Utils.PublicacaoPK;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
