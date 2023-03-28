@@ -1,18 +1,14 @@
 package br.com.fiap.appservico.Controller;
 
-import br.com.fiap.appservico.Get.DadosLoginPrestador;
-import br.com.fiap.appservico.Get.DadosMostrarPrestador;
-import br.com.fiap.appservico.Model.Prestador;
-import br.com.fiap.appservico.Post.DadosRegistroPrestador;
-import br.com.fiap.appservico.Put.DadosAtualizacaoPrestador;
-import br.com.fiap.appservico.Repositories.PrestadorRepository;
+import br.com.fiap.appservico.Domain.Prestador.*;
+import br.com.fiap.appservico.Domain.Usuario.DadosLoginUsuario;
 import br.com.fiap.appservico.Utils.Verifica;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("prestador")
@@ -22,38 +18,55 @@ public class PrestadorController extends Verifica {
     private PrestadorRepository repository;
 
     @GetMapping("/{id}")
-    public Optional<DadosMostrarPrestador> prestador(@PathVariable Long id){
-        return repository.findById(id).map(DadosMostrarPrestador::new);
+    public ResponseEntity prestador(@PathVariable Long id){
+        var prestador = repository.getReferenceById(id);
+
+        return ResponseEntity.ok(new DadosMostrarPrestador(prestador));
     }
 
     @PutMapping
     @Transactional
-    public void prestadorPut(@RequestBody @Valid DadosAtualizacaoPrestador dados) {
+    public ResponseEntity prestadorPut(@RequestBody @Valid DadosAtualizacaoPrestador dados) {
         var prestador = repository.getReferenceById(dados.id());
         prestador.atualizarInformacoes(dados);
+
+        return ResponseEntity.ok(new DadosDetalhamentoPrestador(prestador));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void prestadorExcluir(@PathVariable Long id){
+    public ResponseEntity prestadorExcluir(@PathVariable Long id){
         var prestador = repository.getReferenceById(id);
         prestador.excluir();
+
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/remove/{id}")
     @Transactional
-    public void prestadorDel(@PathVariable Long id){
+    public ResponseEntity prestadorDel(@PathVariable Long id){
         repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
     @Transactional
-    public void registro(@RequestBody @Valid DadosRegistroPrestador dados) {
-        repository.save(new Prestador(dados));
+    public ResponseEntity registro(@RequestBody @Valid DadosRegistroPrestador dados, UriComponentsBuilder uriBuilder) {
+        var prestador = new Prestador(dados);
+        repository.save(prestador);
+
+        var uri = uriBuilder.path("/prestadores/{id}").buildAndExpand(prestador.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoPrestador(prestador));
     }
 
     @GetMapping("/login")
-    public Optional<DadosLoginPrestador> login(@RequestBody String cpf, @RequestBody String senha){
-        return repository.findByCpfAndSenha(cpf, senha);
+    public ResponseEntity login(@RequestBody String cpf, @RequestBody String senha){
+        var prestador = repository.findByCpf(cpf);
+        if (prestador.getSenha().equals(senha))
+            return ResponseEntity.ok(new DadosLoginPrestador(prestador));
+        else
+            return ResponseEntity.badRequest().body("Senha inválida!");
     }
 }
