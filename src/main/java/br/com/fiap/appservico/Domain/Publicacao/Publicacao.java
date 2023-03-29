@@ -1,6 +1,5 @@
 package br.com.fiap.appservico.Domain.Publicacao;
 
-import br.com.fiap.appservico.Utils.PublicacaoPK;
 import br.com.fiap.appservico.Domain.Usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -18,9 +17,9 @@ import lombok.*;
 public class Publicacao {
 
     @Id
-    private Long id;
+    private PublicacaoPK id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonBackReference
     private Usuario usuario;
@@ -31,10 +30,6 @@ public class Publicacao {
     public Publicacao(DadosRegistroPublicacao dados) {
         this.titulo = dados.titulo();
         this.descricao = dados.descricao();
-    }
-
-    public Publicacao(Usuario usuario){
-        this.setUsuario(usuario);
     }
 
     public void atualizarInformacoes(DadosAtualizacaoPublicacao dados){
