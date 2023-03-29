@@ -18,6 +18,7 @@ import java.util.List;
 public class Usuario {
 
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
@@ -48,5 +49,15 @@ public class Usuario {
 
 	public void excluir() {
 		this.ativo = false;
+	}
+
+	public Boolean excluirPublicacao(Long id){
+		for (Publicacao publicacao : this.publicacoes) {
+			if (publicacao.getId().equals(id)) {
+				this.publicacoes.remove(publicacao);
+				return true;
+			}
+		}
+		return false;
 	}
 }
