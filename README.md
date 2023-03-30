@@ -49,12 +49,12 @@ Divididos pelas páginas do Front-end às quais eles fazem referência.
 /prestador/login - usando o verbo GET para efetuar o login na plataforma como prestador.
 
 ## Página Principal
-/principal/publicacao - função que usa o verbo GET para mostrar todas as publicações na plataforma.
+/principal/publicacao - usando o verbo GET para mostrar todas as publicações na plataforma.
 
-/principal/publicacao - função que usa o verbo POST para postar uma publicação do Usuário na plataforma.
+/principal/publicacao - usando o verbo POST para postar uma publicação do Usuário na plataforma.
 
-/principal/publicacao/{usuario_id}/{id} - função que usa o verbo GET para procurar uma publicação do Usuário, com id da publicação e do usuário.
+/principal/publicacao/{id} - usando o verbo GET para procurar uma publicação.
 
-/principal/publicacao/{usuario_id}/{id} - função que usa o verbo PUT para atualizar uma publicação do Usuário, com id da publicação e do usuário.
+/principal/publicacao/{id} - usando o verbo PUT para atualizar uma publicação.
 
-/principal/publicacao/{usuario_id}/{id} - função que usa o verbo DELETE para apagar uma publicação do Usuário, com id da publicação e do usuário.
+/principal/publicacao/{usuario_id}/{id} - usando o verbo DELETE para apagar uma publicação.
