@@ -23,8 +23,8 @@ public class PublicacaoController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public List<Publicacao> publicacao(){
-        return repository.findAll();
+    public ResponseEntity<List<Publicacao>> publicacao(){
+        return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/{id}")
