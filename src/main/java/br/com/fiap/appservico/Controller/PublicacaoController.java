@@ -4,6 +4,9 @@ import br.com.fiap.appservico.Domain.Publicacao.*;
 import br.com.fiap.appservico.Domain.Usuario.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +26,8 @@ public class PublicacaoController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public ResponseEntity<List<Publicacao>> publicacao(){
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<Page<Publicacao>> publicacao(@PageableDefault Pageable paginacao){
+        return ResponseEntity.ok(repository.findAll(paginacao));
     }
 
     @GetMapping("/{id}")
