@@ -4,6 +4,8 @@ import br.com.fiap.appservico.Domain.Publicacao.Publicacao;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="usuarios")
 @Entity(name="Usuario")
-public class Usuario {
+public class Usuario extends RepresentationModel<Usuario> {
 
 	@Id
 	@Column(name = "id")

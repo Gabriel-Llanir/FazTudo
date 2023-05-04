@@ -4,6 +4,7 @@ import br.com.fiap.appservico.Domain.Usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 @EqualsAndHashCode(of = "id")
 @ToString
@@ -14,7 +15,7 @@ import lombok.*;
 @Table(name="publicacoes")
 @Entity(name="Publicacao")
 @IdClass(PublicacaoPK.class)
-public class Publicacao {
+public class Publicacao extends RepresentationModel<Publicacao> {
 
     @Id
     private PublicacaoPK id;

@@ -1,7 +1,6 @@
 package br.com.fiap.appservico.Controller;
 
 import br.com.fiap.appservico.Domain.Prestador.*;
-import br.com.fiap.appservico.Domain.Usuario.DadosLoginUsuario;
 import br.com.fiap.appservico.Utils.Verifica;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

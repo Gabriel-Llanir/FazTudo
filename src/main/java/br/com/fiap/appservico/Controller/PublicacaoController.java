@@ -1,5 +1,8 @@
 package br.com.fiap.appservico.Controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import br.com.fiap.appservico.Domain.Publicacao.*;
 import br.com.fiap.appservico.Domain.Usuario.UsuarioRepository;
 import jakarta.validation.Valid;
@@ -12,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("principal/publicacao")
@@ -26,15 +28,43 @@ public class PublicacaoController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public ResponseEntity<Page<Publicacao>> publicacao(@PageableDefault Pageable paginacao){
-        return ResponseEntity.ok(repository.findAll(paginacao));
+    public ResponseEntity<Page<Publicacao>> publicacoes(@PageableDefault Pageable paginacao){
+        var publicacoes = repository.findAll(paginacao);
+        if (publicacoes.isEmpty()){
+            return ResponseEntity.notFound().build();
+        } else {
+            for (Publicacao publicacao: publicacoes) {
+                Long id = publicacao.getId().getUsuarioId();
+                publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacao(id)).withSelfRel());
+            }
+            return ResponseEntity.ok(publicacoes);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity publicacoes(){
+        var publicacoes = repository.findAll();
+        if (publicacoes.isEmpty()){
+            return ResponseEntity.notFound().build();
+        } else {
+            for (Publicacao publicacao: publicacoes) {
+                Long id = publicacao.getId().getUsuarioId();
+                publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacao(id)).withSelfRel());
+            }
+            return ResponseEntity.ok(publicacoes);
+        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity publicacao(@PathVariable Long id){
         var publicacao = repository.getReferenceById(id);
 
-        return ResponseEntity.ok(new DadosMostrarPublicacao(publicacao));
+        if (publicacao == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacoes()).withRel("Lista de Publicações"));
+            return ResponseEntity.ok(new DadosMostrarPublicacao(publicacao));
+        }
     }
 
     @PostMapping

@@ -2,6 +2,7 @@ package br.com.fiap.appservico.Domain.Prestador;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 @EqualsAndHashCode(of = "id")
 @ToString
@@ -11,7 +12,8 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name="prestadores")
 @Entity(name="Prestador")
-public class Prestador {
+
+public class Prestador extends RepresentationModel<Prestador> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

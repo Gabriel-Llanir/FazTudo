@@ -1,5 +1,8 @@
 package br.com.fiap.appservico.Controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import br.com.fiap.appservico.Domain.Usuario.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import br.com.fiap.appservico.Utils.Verifica;
 import org.springframework.web.util.UriComponentsBuilder;
+
 
 @RestController
 @RequestMapping("usuario")
@@ -29,8 +33,15 @@ public class UsuarioController extends Verifica {
     public ResponseEntity publicacoes(@PathVariable Long id, @PageableDefault(size = 10) Pageable paginacao){
         var usuario = repository.getReferenceById(id);
         var publicacoes = usuario.getPublicacoes();
-
-        return ResponseEntity.ok(publicacoes);
+        if (publicacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            for (var publicacao: publicacoes) {
+                Long idP = publicacao.getId().getUsuarioId();
+                publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacao(idP)).withSelfRel());
+            }
+            return ResponseEntity.ok(publicacoes);
+        }
     }
 
     @PutMapping
