@@ -59,13 +59,4 @@ public class PrestadorController extends Verifica {
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoPrestador(prestador));
     }
-
-    @GetMapping("/login")
-    public ResponseEntity login(@RequestBody String cpf, @RequestBody String senha){
-        var prestador = repository.findByCpf(cpf);
-        if (prestador.getSenha().equals(senha))
-            return ResponseEntity.ok(new DadosLoginPrestador(prestador));
-        else
-            return ResponseEntity.badRequest().body("Senha inválida!");
-    }
 }

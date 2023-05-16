@@ -80,16 +80,4 @@ public class UsuarioController extends Verifica {
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoUsuario(usuario));
     }
-
-    @GetMapping("/login")
-    public ResponseEntity login(@RequestBody String cpf, @RequestBody String senha){
-        var usuario = repository.findByCpf(cpf);
-        if (usuario.getAtivo()) {
-            if (usuario.getSenha().equals(senha))
-                return ResponseEntity.ok(new DadosLoginUsuario(usuario));
-
-            return ResponseEntity.badRequest().body("Senha inválida!");
-        }
-        return ResponseEntity.badRequest().body("Usuário desativado!");
-    }
 }
