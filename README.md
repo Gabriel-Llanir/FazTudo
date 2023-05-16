@@ -20,6 +20,9 @@ $ git clone https://github.com/InsaneXurow10/App-prestador-servico
 
 Divididos pelas páginas do Front-end às quais eles fazem referência.
 
+## Página de Login
+/login - usando o verbo POST para autenticar o login de usuários e prestadores.
+
 ## Página do Usuário
 /usuario - usando o verbo PUT para atualizar as informações do usuário no banco de dados.
 
@@ -33,8 +36,6 @@ Divididos pelas páginas do Front-end às quais eles fazem referência.
 
 /usuario/remove/{id} - usando o verbo DELETE para remover completamente um usuário do banco de dados.
 
-/usuario/login - usando o verbo GET para efetuar o login na plataforma como usuário.
-
 ## Página do Prestador
 /prestador - usando o verbo PUT para atualizar as informações do prestador no banco de dados.
 
@@ -45,8 +46,6 @@ Divididos pelas páginas do Front-end às quais eles fazem referência.
 /prestador/{id} - usando o verbo DELETE para excluir/desativar um prestador no banco de dados.
 
 /prestador/remove/{id} - usando o verbo DELETE para remover completamente um prestador do banco de dados.
-
-/prestador/login - usando o verbo GET para efetuar o login na plataforma como prestador.
 
 ## Página Principal
 /principal/publicacao - usando o verbo GET para mostrar todas as publicações na plataforma.
