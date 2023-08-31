@@ -11,7 +11,7 @@ Do outro lado, teremos a opção de usuários se registrarem e fazerem pedidos a
 
 ``` bash
 $ # no terminal digite
-$ git clone https://github.com/InsaneXurow10/App-prestador-servico
+$ git clone https://github.com/Gabriel-Llanir/FazTudo
 
 ```
 
