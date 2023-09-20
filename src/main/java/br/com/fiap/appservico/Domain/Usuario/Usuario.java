@@ -55,7 +55,7 @@ public class Usuario extends RepresentationModel<Usuario> {
 
 	public Boolean excluirPublicacao(Long id){
 		for (Publicacao publicacao : this.publicacoes) {
-			if (publicacao.getId().equals(id)) {
+			if (publicacao.getUsuario_id().equals(id)) {
 				this.publicacoes.remove(publicacao);
 				return true;
 			}

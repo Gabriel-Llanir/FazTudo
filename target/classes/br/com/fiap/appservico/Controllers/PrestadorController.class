@@ -1,9 +1,0 @@
-Êþº¾   = 9
-      java/lang/Object <init> ()V  'br/com/fiap/appservico/Models/Prestador 
- Gabriel  
-Gabriel123  123.456.789-11
-     ;(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IC)V	      6br/com/fiap/appservico/Controllers/PrestadorController 	prestador )Lbr/com/fiap/appservico/Models/Prestador; Code LineNumberTable LocalVariableTable this 8Lbr/com/fiap/appservico/Controllers/PrestadorController; perfil +()Lbr/com/fiap/appservico/Models/Prestador; RuntimeVisibleAnnotations 4Lorg/springframework/web/bind/annotation/GetMapping; value /Perfil 	perfilPut T(Lbr/com/fiap/appservico/Models/Prestador;)Lbr/com/fiap/appservico/Models/Prestador; MethodParameters 4Lorg/springframework/web/bind/annotation/PutMapping; "RuntimeVisibleParameterAnnotations 5Lorg/springframework/web/bind/annotation/RequestBody; 	perfilDel ()Z 7Lorg/springframework/web/bind/annotation/DeleteMapping; login '(Ljava/lang/String;Ljava/lang/String;)Z cpf Ljava/lang/String; senha /Login registro ,(Lbr/com/fiap/appservico/Models/Prestador;)Z 5Lorg/springframework/web/bind/annotation/PostMapping; 	/Registro 
-SourceFile PrestadorController.java 8Lorg/springframework/web/bind/annotation/RestController; !                    H     *· *» Y	
-0· µ ±       
-                          /     *´ °                                ![ s "  # $     6     +°                              %            &  ![ s " '     (    ) *     ,     ¬           "                  +  ![ s "  , -     @     ¬           *                 . /     0 /  %   	 .   0           ![ s 1 '   
-  (    (    2 3     6     ¬           0                   %            4  ![ s 5 '     (    6    7      8  

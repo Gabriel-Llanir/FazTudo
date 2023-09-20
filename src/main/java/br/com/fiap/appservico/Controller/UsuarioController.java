@@ -37,7 +37,7 @@ public class UsuarioController extends Verifica {
             return ResponseEntity.notFound().build();
         } else {
             for (var publicacao: publicacoes) {
-                Long idP = publicacao.getId().getUsuarioId();
+                Long idP = publicacao.getUsuario_id();
                 publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacao(idP)).withSelfRel());
             }
             return ResponseEntity.ok(publicacoes);

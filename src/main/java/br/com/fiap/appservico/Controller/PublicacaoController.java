@@ -17,7 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
-@RequestMapping("principal/publicacao")
+@RequestMapping("publicacao")
 @Transactional
 public class PublicacaoController {
 
@@ -27,14 +27,14 @@ public class PublicacaoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @GetMapping
+    @GetMapping("/page")
     public ResponseEntity<Page<Publicacao>> publicacoes(@PageableDefault Pageable paginacao){
         var publicacoes = repository.findAll(paginacao);
         if (publicacoes.isEmpty()){
             return ResponseEntity.notFound().build();
         } else {
             for (Publicacao publicacao: publicacoes) {
-                Long id = publicacao.getId().getUsuarioId();
+                Long id = publicacao.getUsuario_id();
                 publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacao(id)).withSelfRel());
             }
             return ResponseEntity.ok(publicacoes);
@@ -48,7 +48,7 @@ public class PublicacaoController {
             return ResponseEntity.notFound().build();
         } else {
             for (Publicacao publicacao: publicacoes) {
-                Long id = publicacao.getId().getUsuarioId();
+                Long id = publicacao.getUsuario_id();
                 publicacao.add(linkTo(methodOn(PublicacaoController.class).publicacao(id)).withSelfRel());
             }
             return ResponseEntity.ok(publicacoes);
@@ -72,12 +72,12 @@ public class PublicacaoController {
         var usuario = usuarioRepository.getReferenceById(dados.usuario_id());
         var publicacao = new Publicacao(dados);
         var pk = new PublicacaoPK(publicacao.getUsuario().getId(), publicacao.getTitulo());
-        publicacao.setId(pk);
+        publicacao.setUsuario_id(publicacao.getUsuario_id());
         publicacao.setUsuario(usuario);
         usuario.getPublicacoes().add(publicacao);
         repository.save(publicacao);
 
-        var uri = uriBuilder.path("/principal/publicacao").buildAndExpand(publicacao.getId()).toUri();
+        var uri = uriBuilder.path("/principal/publicacao").buildAndExpand(publicacao.getUsuario_id()).toUri();
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoPublicacao(publicacao));
     }

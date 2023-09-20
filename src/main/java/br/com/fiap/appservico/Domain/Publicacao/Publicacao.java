@@ -18,14 +18,17 @@ import org.springframework.hateoas.RepresentationModel;
 public class Publicacao extends RepresentationModel<Publicacao> {
 
     @Id
-    private PublicacaoPK id;
+    @Column(insertable=false, updatable=false)
+    private Long usuario_id;
+
+    @Id
+    private String titulo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonBackReference
     private Usuario usuario;
 
-    private String titulo;
     private String descricao;
 
     public Publicacao(DadosRegistroPublicacao dados) {

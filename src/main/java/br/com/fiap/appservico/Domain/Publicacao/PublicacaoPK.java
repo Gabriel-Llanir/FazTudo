@@ -10,6 +10,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class PublicacaoPK implements Serializable {
 
-    private Long usuarioId;
+    private Long usuario_id;
     private String titulo;
 }
