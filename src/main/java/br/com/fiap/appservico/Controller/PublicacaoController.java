@@ -27,7 +27,7 @@ public class PublicacaoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @GetMapping("/page")
+    @GetMapping("/pageable")
     public ResponseEntity<Page<Publicacao>> publicacoes(@PageableDefault Pageable paginacao){
         var publicacoes = repository.findAll(paginacao);
         if (publicacoes.isEmpty()){
