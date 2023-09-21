@@ -30,24 +30,22 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2N10yGvoRcILpZ70evA3uj5smBX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/user/Documents/FIAP/2º ano/Digital_Business_GeminiDev/FazTudo"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/FIAP/2º ano/Digital_Business_GeminiDev/FazTudo&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="FazTudo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.com.fiap.appservico.Main" />
@@ -90,6 +88,7 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Jodando liso 144fps 4k" />
     <option name="LAST_COMMIT_MESSAGE" value="Jodando liso 144fps 4k" />
   </component>
