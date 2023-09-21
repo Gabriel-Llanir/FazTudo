@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/seuapp.jar
+web: java -Dserver.port=$PORT -Dspring.profiles.active=heroku -jar target/faztudo.jar
